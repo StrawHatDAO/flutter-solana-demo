@@ -1,4 +1,4 @@
-# flutter_phantom_demo
+# flutter_solana_demo
 
 This repo contains a demo application written with Flutter that showcases Phantom's deep linking API.
 [API Documentation](https://docs.phantom.app/integrating/deeplinks)
