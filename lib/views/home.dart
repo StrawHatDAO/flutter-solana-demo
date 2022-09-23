@@ -21,10 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var walletAddr = "";
-
   final phantomInstance = PhantomInstance();
-
   late StreamSubscription sub;
 
   @override
@@ -72,7 +69,7 @@ class _HomeState extends State<Home> {
                 provider.updateConnection(phantomInstance);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    duration: const Duration(seconds: 5),
+                    duration: const Duration(seconds: 2),
                     backgroundColor: Colors.green[400],
                     content: const Text("Connected to wallet"),
                     action: SnackBarAction(
@@ -87,7 +84,7 @@ class _HomeState extends State<Home> {
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    duration: const Duration(seconds: 5),
+                    duration: const Duration(seconds: 2),
                     backgroundColor: Colors.green[400],
                     content: const Text("Error creating session"),
                     action: SnackBarAction(
@@ -105,8 +102,6 @@ class _HomeState extends State<Home> {
               setState(() {
                 provider.updateConnection(phantomInstance);
               });
-              logger.i('Nowww  disconnected');
-              logger.i(provider.isConnected);
               break;
             case '/signAndSendTransaction':
               var data = phantomInstance.decryptDataPayload(
@@ -165,12 +160,17 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<WalletStateProvider>(context, listen: true);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        centerTitle: true,
+        title: const Text("Welcome to Flutter Demo App"),
       ),
-      drawer: Sidebar(phantomInstance: phantomInstance),
-      body: Consumer<WalletStateProvider>(builder: (context, provider, child) {
+      drawer: provider.isConnected
+          ? Sidebar(phantomInstance: phantomInstance)
+          : null,
+      body: Builder(builder: (context) {
         return provider.isConnected
             ? Connected(phantomInstance: phantomInstance)
             : NotConnected(phantomInstance: phantomInstance);

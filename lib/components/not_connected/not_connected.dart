@@ -41,9 +41,13 @@ class _NotConnectedState extends State<NotConnected> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          ElevatedButton(
+          ElevatedButton.icon(
             onPressed: connectWallet,
-            child: const Text("Connect Wallet"),
+            label: const Text("Connect Wallet"),
+            icon: const Icon(Icons.link),
+            style: ElevatedButton.styleFrom(
+              elevation: 4,
+            ),
           )
         ],
       ),
