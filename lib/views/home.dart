@@ -21,7 +21,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final phantomInstance = PhantomInstance();
+  final phantomInstance = PhantomInstance(
+    appUrl: "https://solgallery.vercel.app",
+    deepLink: "dapp://flutterphantom.app",
+  );
   late StreamSubscription sub;
 
   @override
@@ -104,7 +107,7 @@ class _HomeState extends State<Home> {
               });
               break;
             case '/signAndSendTransaction':
-              var data = phantomInstance.decryptDataPayload(
+              var data = phantomInstance.decryptPayload(
                   data: params["data"]!, nonce: params["nonce"]!);
               logger.i("Decrypted data: ${data['signature']}");
               Navigator.push(
@@ -117,7 +120,7 @@ class _HomeState extends State<Home> {
               );
               break;
             case '/signTransaction':
-              var data = phantomInstance.decryptDataPayload(
+              var data = phantomInstance.decryptPayload(
                   data: params["data"]!, nonce: params["nonce"]!);
               logger.wtf("Decrypted data: $data");
               Navigator.push(
@@ -129,8 +132,13 @@ class _HomeState extends State<Home> {
                 ),
               );
               break;
+            case '/signAllTransactions':
+              var data = phantomInstance.decryptPayload(
+                  data: params["data"]!, nonce: params["nonce"]!);
+              logger.wtf("Decrypted data: $data");
+              break;
             case '/onSignMessage':
-              var data = phantomInstance.decryptDataPayload(
+              var data = phantomInstance.decryptPayload(
                   data: params["data"]!, nonce: params["nonce"]!);
               logger.i("Decrypted data: ${data['signature']}");
               logger.i("Sign message");

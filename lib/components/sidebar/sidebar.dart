@@ -25,6 +25,7 @@ class Sidebar extends StatelessWidget {
           children: <Widget>[
             buildHeader(
                 urlImage: urlImage, name: solname, walletAddress: walletAddrs),
+            const Divider(color: Colors.white70),
             Container(
               padding: padding,
               child: Column(
@@ -50,29 +51,35 @@ class Sidebar extends StatelessWidget {
                   const SizedBox(height: 16),
                   buildSideBarButton(
                     text: 'Sign Transaction',
-                    icon: Icons.back_hand,
+                    icon: Icons.edit,
                     onClicked: () => selectedItem(context, 3, phantomInstance),
+                  ),
+                  const SizedBox(height: 16),
+                  buildSideBarButton(
+                    text: 'Sign All Transaction',
+                    icon: Icons.done_all,
+                    onClicked: () => selectedItem(context, 4, phantomInstance),
                   ),
                   const SizedBox(height: 16),
                   buildSideBarButton(
                     text: 'Disconnect',
                     icon: Icons.link_off,
-                    onClicked: () => selectedItem(context, 4, phantomInstance),
+                    onClicked: () => selectedItem(context, 5, phantomInstance),
                   ),
                   const SizedBox(height: 24),
                   const Divider(color: Colors.white70),
                   const SizedBox(height: 24),
-                  buildSideBarButton(
-                    text: 'Plugins',
-                    icon: Icons.account_tree_outlined,
-                    onClicked: () => selectedItem(context, 10, phantomInstance),
-                  ),
-                  const SizedBox(height: 16),
-                  buildSideBarButton(
-                    text: 'Notifications',
-                    icon: Icons.notifications_outlined,
-                    onClicked: () => selectedItem(context, 10, phantomInstance),
-                  ),
+                  // buildSideBarButton(
+                  //   text: 'Plugins',
+                  //   icon: Icons.account_tree_outlined,
+                  //   onClicked: () => selectedItem(context, 10, phantomInstance),
+                  // ),
+                  // const SizedBox(height: 16),
+                  // buildSideBarButton(
+                  //   text: 'Notifications',
+                  //   icon: Icons.notifications_outlined,
+                  //   onClicked: () => selectedItem(context, 10, phantomInstance),
+                  // ),
                 ],
               ),
             ),
@@ -172,6 +179,9 @@ class Sidebar extends StatelessWidget {
         context.read<ScreenProvider>().changeScreen(Screens.sign);
         break;
       case 4:
+        context.read<ScreenProvider>().changeScreen(Screens.signAll);
+        break;
+      case 5:
         Uri url = phantomInstance.generateDisconectUri();
         await launchUrl(url, mode: LaunchMode.externalApplication);
         break;

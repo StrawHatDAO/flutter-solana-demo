@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phantom_demo/components/screens/screens.dart';
+import 'package:flutter_phantom_demo/components/screens/sign_all_transactions/sign_all_transactions.dart';
 import 'package:flutter_phantom_demo/components/screens/sign_and_send_transaction/sign_and_send_tx.dart';
 import 'package:flutter_phantom_demo/components/screens/sign_in_message/sign_in_message.dart';
 import 'package:flutter_phantom_demo/components/screens/sign_transaction/sign_tx.dart';
@@ -32,6 +33,9 @@ class _ConnectedState extends State<Connected> {
         return SignInMessageScreen(phantomInstance: widget.phantomInstance);
       case Screens.sign:
         return SignTransactionScreen(phantomInstance: widget.phantomInstance);
+      case Screens.signAll:
+        return SignAllTransactionScreen(
+            phantomInstance: widget.phantomInstance);
       default:
         return Center(
           child: Column(
