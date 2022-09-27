@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phantom_demo/utils/phantom.dart';
 import 'package:pinenacl/ed25519.dart';
 
 class WalletStateProvider extends ChangeNotifier {
@@ -8,8 +7,8 @@ class WalletStateProvider extends ChangeNotifier {
 
   bool get isConnected => _connected;
 
-  void updateConnection(PhantomInstance state) {
-    _connected = !(state.sharedSecret == null);
+  void updateConnection(bool state) {
+    _connected = state;
     notifyListeners();
   }
 

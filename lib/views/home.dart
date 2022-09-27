@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
           switch (link?.path) {
             case '/connected':
               if (phantomInstance.createSession(params)) {
-                provider.updateConnection(phantomInstance);
+                provider.updateConnection(true);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     duration: const Duration(seconds: 2),
@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
               break;
             case '/disconnect':
               setState(() {
-                provider.updateConnection(phantomInstance);
+                provider.updateConnection(false);
               });
               break;
             case '/signAndSendTransaction':

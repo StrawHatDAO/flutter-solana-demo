@@ -65,8 +65,8 @@ class _SignAllTransactionScreenState extends State<SignAllTransactionScreen> {
       ],
     ).encode();
 
-    var launchUri = widget.phantomInstance
-        .generateUriSignAllTransactions(transactions: [tx1, tx2]);
+    var launchUri = widget.phantomInstance.generateUriSignAllTransactions(
+        transactions: [tx1, tx2], redirect: '/signAllTransactions');
     await launchUrl(
       launchUri,
       mode: LaunchMode.externalApplication,

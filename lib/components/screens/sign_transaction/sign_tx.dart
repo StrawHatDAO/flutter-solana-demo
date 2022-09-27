@@ -46,8 +46,8 @@ class _SignTransactionScreenState extends State<SignTransactionScreen> {
       ],
     ).encode();
 
-    var launchUri =
-        widget.phantomInstance.generateUriSignTransaction(transaction: tx);
+    var launchUri = widget.phantomInstance.generateUriSignTransaction(
+        transaction: tx, redirect: '/signTransaction');
     await launchUrl(
       launchUri,
       mode: LaunchMode.externalApplication,

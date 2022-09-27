@@ -49,8 +49,8 @@ class _SignAndSendTransactionScreenState
       ],
     ).encode();
 
-    var launchUri = widget.phantomInstance
-        .generateUriSignAndSendTransaction(transaction: tx);
+    var launchUri = widget.phantomInstance.generateUriSignAndSendTransaction(
+        transaction: tx, redirect: '/signAndSendTransaction');
     await launchUrl(
       launchUri,
       mode: LaunchMode.externalApplication,

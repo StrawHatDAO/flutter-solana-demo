@@ -19,7 +19,8 @@ class SignInMessageScreen extends StatefulWidget {
 class _SignInMessageScreenState extends State<SignInMessageScreen> {
   _signInAUth(WalletStateProvider walletState) async {
     Uint8List nonce = walletState.generateNoce();
-    Uri launchUri = widget.phantomInstance.generateUriSignMessage(nonce: nonce);
+    Uri launchUri = widget.phantomInstance
+        .generateUriSignMessage(nonce: nonce, redirect: '/onSignMessage');
     logger.i(launchUri);
     await launchUrl(
       launchUri,

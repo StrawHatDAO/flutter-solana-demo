@@ -13,8 +13,8 @@ class NotConnected extends StatefulWidget {
 
 class _NotConnectedState extends State<NotConnected> {
   connectWallet() async {
-    Uri launchUri =
-        widget.phantomInstance.generateUriConnect(cluster: 'devnet');
+    Uri launchUri = widget.phantomInstance
+        .generateUriConnect(cluster: 'devnet', redirect: '/connected');
     logger.d(launchUri);
     await launchUrl(
       launchUri,
